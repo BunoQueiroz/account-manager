@@ -39,4 +39,5 @@ class Purchase(models.Model):
 
     def save(self) -> None:
         self.total = self.total_purchase()
-        return super().save()
+        super().save()
+        return self.account.save()

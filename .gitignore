@@ -3,6 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Static Files Django Admin
+
+static/admin/img/
+static/admin/js/
+static/admin/css/*
+!static/admin/css/base.css
+
 # C extensions
 *.so
 

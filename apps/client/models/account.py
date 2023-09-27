@@ -4,7 +4,7 @@ from .client import Client
 
 class Account(models.Model):
 
-    client = models.ForeignKey(Client, models.CASCADE)
+    client = models.OneToOneField(Client, models.CASCADE)
     opened = models.BooleanField(default=True)
 
     def __str__(self) -> str:

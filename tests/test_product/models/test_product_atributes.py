@@ -37,3 +37,6 @@ class ProductAtributesTestCase(TestCase):
         self.assertEqual(product.category, self.category)
         self.assertEqual(product.description, 'No momento, sem descrição')
         self.assertEqual(product.brand, 'Sem marca')
+
+    def test_str_method_of_product_class(self):
+        self.assertEqual(str(self.product), self.product.name)

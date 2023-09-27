@@ -28,3 +28,9 @@ class AccountAtributesTestCase(TestCase):
     def test_atributes_account_in_db(self):
         self.assertEqual(self.account.client, self.first_client)
         self.assertTrue(self.account.opened)
+
+    def test_str_method_account_class(self):
+        self.assertEqual(
+            str(self.account),
+            f'account - {self.account.client.first_name}'
+        )

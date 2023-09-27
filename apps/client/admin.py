@@ -9,7 +9,8 @@ class ClientAdmin(admin.ModelAdmin):
 
 
 class AccountAdmin(admin.ModelAdmin):
-    list_display = ['client', 'opened']
+    list_display = ['client', 'opened', 'total']
+    ordering = ['client', 'total']
     list_editable = ['opened']
     search_fields = ['client']
     list_filter = ['opened']

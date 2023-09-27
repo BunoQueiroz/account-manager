@@ -1,17 +1,16 @@
 from django.test import TestCase
-from apps.product.models import Product, Category
+from product.models import Product, Category
+from datetime import datetime
 
 
-'''class ProductAtributesTestCase(TestCase):
+class ProductAtributesTestCase(TestCase):
 
     def setUp(self) -> None:
-        print('cuida-'*5)
         self.first_category = Category(
             name='Massas',
         )
         self.first_category.save()
         self.category = Category.objects.get(name='Massas')
-        print(self.category)
         self.product = Product(
             name='Pacote de pão',
             price=7,
@@ -25,8 +24,16 @@ from apps.product.models import Product, Category
     def test_atributes_product_class(self):
         self.assertEqual(self.product.name, 'Pacote de pão')
         self.assertEqual(self.product.price, 7)
-        self.assertEqual(self.product.criation_date, '2023-09-22')
+        self.assertEqual(self.product.criation_date, datetime.date(datetime.now()))
         self.assertEqual(self.product.category, self.category)
         self.assertEqual(self.product.description, 'No momento, sem descrição')
         self.assertEqual(self.product.brand, 'Sem marca')
-'''
+
+    def test_atributes_product_class_in_db(self):
+        product = Product.objects.get(name='Pacote de pão')
+        self.assertEqual(product.name, 'Pacote de pão')
+        self.assertEqual(product.price, 7)
+        self.assertEqual(product.criation_date, datetime.date(datetime.now()))
+        self.assertEqual(product.category, self.category)
+        self.assertEqual(product.description, 'No momento, sem descrição')
+        self.assertEqual(product.brand, 'Sem marca')

@@ -32,5 +32,5 @@ class AccountAtributesTestCase(TestCase):
     def test_str_method_account_class(self):
         self.assertEqual(
             str(self.account),
-            f'account - {self.account.client.first_name}'
+            f'Account - {self.account.client.first_name}'
         )

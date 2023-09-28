@@ -10,7 +10,7 @@ class Account(models.Model):
     total = models.DecimalField(max_digits=9, decimal_places=2, editable=False)
 
     def __str__(self) -> str:
-        return f'account - {self.client.first_name}'
+        return f'Account - {self.client.first_name}'
     
     def total_account(self) -> float:
         total = 0
@@ -37,7 +37,10 @@ class Purchase(models.Model):
     def __str__(self) -> str:
         return f'{self.account.client.first_name} - {self.moment.date()}'
 
-    def save(self) -> None:
+    def save(self, update_fields=False) -> None:
         self.total = self.total_purchase()
-        super().save()
+        if update_fields:
+            super().save(update_fields=update_fields)
+        else:
+            super().save()
         return self.account.save()

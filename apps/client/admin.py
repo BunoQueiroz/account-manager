@@ -2,6 +2,13 @@ from django.contrib import admin
 from client.models import Client, Account, Purchase
 from django.contrib.auth.models import User, Group
 
+# Update Action
+
+@admin.action(description='Purchase Update')
+def update(modeladmin, request, queryset):
+    for instance in queryset:
+        instance.save(update_fields=['total'])
+
 # Admin Classes
 
 class ClientAdmin(admin.ModelAdmin):
@@ -19,8 +26,9 @@ class AccountAdmin(admin.ModelAdmin):
 
 
 class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ['account', 'item', 'amount', 'total']
+    list_display = ['account', 'item', 'amount', 'total', 'moment']
     list_filter = ['account']
+    actions = [update]
 
 
 class UserAdmin(admin.ModelAdmin):

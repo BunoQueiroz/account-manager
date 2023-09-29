@@ -18,9 +18,9 @@ class Account(models.Model):
         total = sum(purchase.total for purchase in purchases)
         return total
     
-    def save(self) -> None:
+    def save(self, force_insert=False, using=False, force_update=None) -> None:
         self.total = self.total_account()
-        return super().save()
+        return super().save(force_insert, using=using, force_update=force_update)
 
 
 class Purchase(models.Model):
@@ -37,10 +37,10 @@ class Purchase(models.Model):
     def __str__(self) -> str:
         return f'{self.account.client.first_name} - {self.moment.date()}'
 
-    def save(self, update_fields=False) -> None:
+    def save(self, force_insert=False, using=False, update_fields=False) -> None:
         self.total = self.total_purchase()
         if update_fields:
             super().save(update_fields=update_fields)
         else:
-            super().save()
+            super().save(force_insert=force_insert, using=using)
         return self.account.save()

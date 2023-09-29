@@ -14,12 +14,7 @@ class AccountAtributesTestCase(TestCase):
         ).save()
         self.first_client = Client.objects.get(email='email@gmail.com')
 
-        self.account = Account(
-            client = self.first_client,
-            opened = True,
-        )
-        self.account.save()
-        self.account_in_db = Account.objects.get(opened=True)
+        self.account = Account.objects.get(opened=True)
 
     def test_atributes_account_class(self):
         self.assertEqual(self.account.client, self.first_client)

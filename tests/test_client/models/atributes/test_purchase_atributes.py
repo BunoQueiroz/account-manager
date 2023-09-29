@@ -10,7 +10,6 @@ class PurchaseAtributesTestCase(TestCase):
         self.client = Client(first_name='Bruno', birthday=datetime.date(datetime.now())).save()
         self.client_in_db = Client.objects.get(first_name='Bruno')
 
-        self.account = Account(client=self.client_in_db).save()
         self.account_in_db = Account.objects.get(client=self.client_in_db)
 
         self.category = Category(name='Teste').save()

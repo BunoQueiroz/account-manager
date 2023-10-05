@@ -1,0 +1,29 @@
+version: '3'
+
+
+services:
+
+  data_base:
+    container_name: 'data_base'
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD
+      - POSTGRES_USER
+      - POSTGRES_DB
+    restart: always
+  
+  application:
+    depends_on: 
+      - data_base
+    container_name: 'application'
+    image: bunoqueiroz/account-manager:1.1.0
+    environment:
+      - POSTGRES_PASSWORD
+      - POSTGRES_USER
+      - POSTGRES_DB
+      - DEBUG
+      - SECRET_KEY
+      - HOST
+      - PORT
+    ports:
+      - "8000:8000"

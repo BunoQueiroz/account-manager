@@ -99,7 +99,7 @@ python manage.py runserver
 docker-compose build
 ```
 ```
-docker compose up -d
+docker-compose up -d
 ```
 
 ### Then:
@@ -124,7 +124,14 @@ docker exec -it <container_id> python manage.py migrate
 ```
 python3 manage.py createsuperuser
 ```
+
+* --For Windows:
+```
+python3 manage.py createsuperuser
+```
+
 * And enter the username and password:
+
 ![](https://raw.githubusercontent.com/BunoQueiroz/images-and-gifs/master/create-super-user.png)
 
 ## 👏👏 Congratulations! You can now use the [system](http://localhost:8000)

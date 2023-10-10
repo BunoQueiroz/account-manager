@@ -4,3 +4,5 @@ from django.urls import path
 urlpatterns = [
     path('', admin.site.urls),
 ]
+
+handler404 = 'client.views.handler404'

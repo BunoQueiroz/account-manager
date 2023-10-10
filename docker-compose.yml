@@ -1,6 +1,5 @@
 version: '3'
 
-
 services:
 
   data_base:
@@ -16,7 +15,8 @@ services:
     depends_on: 
       - data_base
     container_name: 'application'
-    image: bunoqueiroz/account-manager:1.1.0
+    image: bunoqueiroz/account-manager:1.2.0
+    restart: always
     environment:
       - POSTGRES_PASSWORD
       - POSTGRES_USER

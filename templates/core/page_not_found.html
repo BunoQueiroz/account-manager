@@ -1,0 +1,9 @@
+{% extends "core/_base.html" %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href={% static 'css/style.css' %}>
+{% endblock links %}
+
+{% block title %}Page Not Found{% endblock title %}
+{% block content_title %}Page Not Found{% endblock content_title %}
+{% block subtitle %}<a href="{% url 'admin:index' %}">Back to Home{% endblock subtitle %}

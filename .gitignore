@@ -10,6 +10,14 @@ static/admin/js/
 static/admin/css/*
 !static/admin/css/base.css
 
+# Static WhiteNoise
+
+static/css/style.*.css
+static/css/style.css.gz
+static/css/style.*.css.gz
+static/staticfiles.json
+static/img/*.*.*
+
 # C extensions
 *.so
 

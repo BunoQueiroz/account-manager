@@ -1,0 +1,14 @@
+.font-1 {
+    font-size: 4.5rem;
+}
+
+.font-3 {
+    font-size: 2rem;
+}
+
+#center-absolute {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

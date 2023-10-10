@@ -14,5 +14,6 @@ RUN apk add libpq-dev
 COPY --from=base /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
 RUN python -m pip install --upgrade pip
 COPY . .
+RUN python manage.py collectstatic --no-input
 EXPOSE 8000
 CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]

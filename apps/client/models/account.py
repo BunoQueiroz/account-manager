@@ -27,7 +27,7 @@ class Purchase(models.Model):
 
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     item = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
-    amount = models.PositiveIntegerField(default=1)
+    amount = models.FloatField(default=1)
     moment = models.DateTimeField(auto_now=True, editable=False)
     total = models.FloatField(editable=False)
 

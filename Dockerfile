@@ -16,4 +16,4 @@ RUN python -m pip install --upgrade pip
 COPY . .
 RUN python manage.py collectstatic --no-input
 EXPOSE 8000
-CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
+CMD [ "python", "-m", "gunicorn", "config.wsgi", "-b", "0.0.0.0:8000" ]

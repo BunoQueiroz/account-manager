@@ -11,6 +11,7 @@ README.md
 Dockerfile
 .git
 *.env
+*.example
 .dockerignore
 
 # Static Files Django Admin

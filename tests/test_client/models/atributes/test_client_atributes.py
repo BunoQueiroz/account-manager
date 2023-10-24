@@ -36,3 +36,6 @@ class ClientAtributesTestCase(TestCase):
             str(self.client_in_db),
             f'{self.client_in_db.first_name} {self.client_in_db.last_name}'
         )
+
+    def test_date_register_today_for_new_clients(self):
+        self.assertEqual(self.client_in_db.register_date, date.today())

@@ -1,5 +1,6 @@
 from django.test import TestCase
 from client.models import Account, Client
+from datetime import date
 
 
 class AccountAtributesTestCase(TestCase):
@@ -29,3 +30,6 @@ class AccountAtributesTestCase(TestCase):
             str(self.account),
             f'Account - {self.account.client.first_name}'
         )
+
+    def test_date_account_instance_auto_now(self):
+        self.assertEqual(self.account.opening_date, date.today())

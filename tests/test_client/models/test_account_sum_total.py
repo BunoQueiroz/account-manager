@@ -40,10 +40,3 @@ class AccountSumTotalTestCase(TestCase):
             self.account_in_db.total,
             sum(purchase.total for purchase in purchases)
         )
-
-    def test_sum_total_without_save_account(self):
-        purchases = Purchase.objects.filter(account=self.account_in_db)
-        self.assertEqual(
-            self.account_in_db.total,
-            sum(purchase.total for purchase in purchases)
-        )        

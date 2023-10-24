@@ -8,6 +8,7 @@ class Client(models.Model):
     cpf = models.CharField(max_length=14, blank=True)
     email = models.EmailField(blank=True)
     birthday = models.DateField()
+    register_date = models.DateField(auto_now=True, editable=False)
 
     def __str__(self) -> str:
         if self.last_name:

@@ -6,6 +6,7 @@ from product.models import Product
 class Account(models.Model):
 
     client = models.OneToOneField(Client, models.CASCADE)
+    opening_date = models.DateField(auto_now=True, editable=False)
     opened = models.BooleanField(default=True)
     total = models.DecimalField(max_digits=9, decimal_places=2, editable=False)
 

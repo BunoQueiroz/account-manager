@@ -12,14 +12,14 @@ class Account(models.Model):
     def __str__(self) -> str:
         return f'Account - {self.client.first_name}'
     
-    def total_account(self) -> float:
-        total = 0
-        purchases = Purchase.objects.filter(account=self)
-        total = sum(purchase.total for purchase in purchases)
-        return total
+    def total_account(self, force_update=None) -> float:
+        if force_update is not None:
+            purchases = Purchase.objects.filter(account=self)
+            return sum(purchase.total for purchase in purchases)
+        return 0
     
     def save(self, force_insert=False, using=False, force_update=None) -> None:
-        self.total = self.total_account()
+        self.total = self.total_account(force_update)
         return super().save(force_insert, using=using, force_update=force_update)
 
 
@@ -43,4 +43,4 @@ class Purchase(models.Model):
             super().save(update_fields=update_fields)
         else:
             super().save(force_insert=force_insert, using=using)
-        return self.account.save()
+        return self.account.save(force_update=True)

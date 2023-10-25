@@ -28,3 +28,9 @@ static/css/style.css.gz
 static/css/style.*.css.gz
 static/staticfiles.json
 static/img/*.*.*
+
+# Nginx Config
+nginx-config/
+
+# Requests Web
+requests-web/

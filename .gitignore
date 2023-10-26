@@ -5,18 +5,10 @@ __pycache__/
 
 # Static Files Django Admin
 
-static/admin/img/
-static/admin/js/
-static/admin/css/*
-!static/admin/css/base.css
-
-# Static WhiteNoise
-
-static/css/style.*.css
-static/css/style.css.gz
-static/css/style.*.css.gz
-static/staticfiles.json
-static/img/*.*.*
+nginx-config/static/admin/img/
+nginx-config/static/admin/js/
+nginx-config/static/admin/css/*
+!nginx-config/static/admin/css/base.css
 
 # C extensions
 *.so

@@ -6,7 +6,7 @@ services:
     depends_on: 
       - data_base
     container_name: 'application-1'
-    image: bunoqueiroz/account-manager:1.3.3
+    image: bunoqueiroz/account-manager:1.3.4
     restart: always
     environment:
       - POSTGRES_PASSWORD
@@ -26,7 +26,7 @@ services:
     depends_on: 
       - data_base
     container_name: 'application-2'
-    image: bunoqueiroz/account-manager:1.3.3
+    image: bunoqueiroz/account-manager:1.3.4
     restart: always
     environment:
       - POSTGRES_PASSWORD

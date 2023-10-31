@@ -1,20 +1,6 @@
 from django.contrib import admin
-from client.models import Client, Account, Purchase
-from django.contrib.auth.models import User, Group
+from client.admin.utils import reopen_account, update
 
-# Actions
-
-@admin.action(description='Purchase Update')
-def update(modeladmin, request, queryset):
-    for instance in queryset:
-        instance.save(update_fields=['total'])
-
-@admin.action(description='Reopen Account')
-def reopen_account(modeladmin, request, queryset):
-    for instance in queryset:
-        Account.objects.get_or_create(client=instance)
-
-# Admin Classes
 
 class ClientAdmin(admin.ModelAdmin):
     list_display = ['id', 'first_name', 'last_name', 'cpf', 'email', 'birthday']
@@ -52,13 +38,3 @@ class GroupAdmin(admin.ModelAdmin):
 class Manager(admin.AdminSite):
     site_header = 'Administration'
     
-
-admin.site = Manager()
-
-# Admin Register
-
-admin.site.register(Client, ClientAdmin)
-admin.site.register(Account, AccountAdmin)
-admin.site.register(Purchase, PurchaseAdmin)
-admin.site.register(User, UserAdmin)
-admin.site.register(Group, GroupAdmin)

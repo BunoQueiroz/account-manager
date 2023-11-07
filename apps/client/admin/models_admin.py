@@ -10,10 +10,13 @@ class ClientAdmin(admin.ModelAdmin):
 
 
 class AccountAdmin(admin.ModelAdmin):
-    list_display = ['client', 'opened', 'total']
-    ordering = ['client', 'total']
+    list_display = ['client_name', 'opened', 'total']
+    @admin.display(ordering='client__first_name', description='client')
+    def client_name(self, obj):
+        return obj.client.first_name
+    
     list_editable = ['opened']
-    search_fields = ['client']
+    search_fields = ['client__first_name']
     list_filter = ['opened']
 
 

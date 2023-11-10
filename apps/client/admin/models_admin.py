@@ -1,5 +1,7 @@
 from django.contrib import admin
+from django.http.response import HttpResponse
 from client.admin.utils import reopen_account, update
+from client.forms import *
 
 
 class ClientAdmin(admin.ModelAdmin):
@@ -7,6 +9,12 @@ class ClientAdmin(admin.ModelAdmin):
     list_editable = ['first_name', 'last_name']
     search_fields = ['first_name', 'last_name']
     actions = [reopen_account]
+    form = ClientForm
+
+    def response_add(self, request, obj, post_url_continue: str | None = ...):
+        if self.form.errors:
+            HttpResponse.status_code = 400
+        return super().response_add(request, obj, post_url_continue)
 
 
 class AccountAdmin(admin.ModelAdmin):

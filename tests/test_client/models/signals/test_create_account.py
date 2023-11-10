@@ -1,6 +1,6 @@
 from django.test import TestCase
 from client.models import Client, Account
-from datetime import datetime
+from datetime import date
 from django.contrib.auth.models import User
 from django.urls import reverse
 
@@ -14,7 +14,7 @@ class CreateAccountTestCase(TestCase):
         self.path = reverse('admin:client_client_add')
         self.data = {
             'first_name': 'Bruno',
-            'birthday': datetime.date(datetime.now())
+            'birthday': date(2002, 8, 21)
         }
 
     def test_create_account_when_insert_new_client(self):

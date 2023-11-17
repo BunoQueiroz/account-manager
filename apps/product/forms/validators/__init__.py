@@ -1,0 +1,1 @@
+from .names_product_validator import name_product_validator

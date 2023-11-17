@@ -18,7 +18,7 @@ class ClientAdmin(admin.ModelAdmin):
 
 
 class AccountAdmin(admin.ModelAdmin):
-    list_display = ['client_name', 'opened', 'total']
+    list_display = ['client_name', 'opened', 'total', 'opening_date']
     @admin.display(ordering='client__first_name', description='client')
     def client_name(self, obj):
         return obj.client.first_name

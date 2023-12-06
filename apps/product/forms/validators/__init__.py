@@ -1,1 +1,2 @@
 from .names_product_validator import name_product_validator
+from .brands_product_validator import brand_product_validator

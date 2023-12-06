@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from product.models import Product
-from product.forms.validators import name_product_validator
+from product.forms.validators import name_product_validator, brand_product_validator
 
 
 class ProductModelForm(ModelForm):
@@ -11,8 +11,10 @@ class ProductModelForm(ModelForm):
 
     def clean(self):
         name = self.cleaned_data.get('name')
+        brand = self.cleaned_data.get('brand')
         errors_list = {}
         name_product_validator(name, errors_list)
+        brand_product_validator(brand, errors_list)
         if errors_list:
             for error in errors_list:
                 error_message = errors_list[error]

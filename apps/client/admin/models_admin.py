@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.http.response import HttpResponse
 from client.admin.utils import reopen_account, update
-from client.forms import *
+from client.forms import ClientForm, PaymentForm
 
 
 class ClientAdmin(admin.ModelAdmin):
@@ -32,6 +32,19 @@ class PurchaseAdmin(admin.ModelAdmin):
     list_display = ['account', 'item', 'amount', 'total', 'moment']
     list_filter = ['account']
     actions = [update]
+
+
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ['account', 'value', 'payer', 'moment', 'received']
+    list_filter = ['account']
+    list_editable = ['payer']
+    search_fields = ['account', 'payer']
+    form = PaymentForm
+
+    def response_add(self, request, obj, post_url_continue: str | None = ...):
+        if self.form.errors:
+            HttpResponse.status_code = 400
+        return super().response_add(request, obj, post_url_continue)
 
 
 class UserAdmin(admin.ModelAdmin):

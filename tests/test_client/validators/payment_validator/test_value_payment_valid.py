@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 
-class PaymentValidTestCase(TestCase):
+class PaymentValueValidTestCase(TestCase):
 
     def setUp(self) -> None:
         User.objects.create_superuser('SuperUser', password='MyNewPassword')
@@ -66,7 +66,7 @@ class PaymentValidTestCase(TestCase):
     def test_payer_only_character_in_value_return_status_code_400(self):
         response = self.client.post(self.url, self.payment_only_character_in_value)
         self.assertEqual(response.status_code, 400)
-# ----------------------------------------------------------------------------------------------------
+
     def test_payer_with_decimal_numbers_in_value_insert_in_database(self):
         self.client.post(self.url, self.payment_decimal_numbers_in_value)
         payment = Payment.objects.filter(

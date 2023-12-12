@@ -1,8 +1,10 @@
 from django.db import models
+from uuid import uuid4
 
 
 class Client(models.Model):
 
+    id = models.UUIDField(primary_key=True, unique=True, editable=False, default=uuid4, auto_created=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=70, blank=True)
     cpf = models.CharField(max_length=14, blank=True)

@@ -2,10 +2,12 @@ from django.db import models
 from client.models import Client
 from product.models import Product
 from django.contrib.auth.models import User
+from uuid import uuid4
 
 
 class Account(models.Model):
 
+    id = models.UUIDField(primary_key=True, unique=True, editable=False, default=uuid4, auto_created=True)
     client = models.OneToOneField(Client, models.CASCADE)
     opening_date = models.DateField(auto_now=True, editable=False)
     opened = models.BooleanField(default=True)
@@ -32,6 +34,7 @@ class Account(models.Model):
 
 class Purchase(models.Model):
 
+    id = models.UUIDField(primary_key=True, unique=True, editable=False, default=uuid4, auto_created=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     item = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
     amount = models.FloatField(default=1)
@@ -55,6 +58,7 @@ class Purchase(models.Model):
 
 class Payment(models.Model):
 
+    id = models.UUIDField(primary_key=True, unique=True, editable=False, default=uuid4, auto_created=True)
     moment = models.DateTimeField(auto_created=True, editable=False, auto_now=True)
     value = models.FloatField()
     received = models.ForeignKey(User, models.DO_NOTHING)

@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:latest
 RUN apt-get update
 RUN rm -r /etc/nginx/conf.d
 COPY nginx.conf /etc/nginx/nginx.conf

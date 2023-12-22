@@ -78,23 +78,23 @@ services:
           cpus: '0.3'
           memory: 256M
 
-  pgadmin4:
-    container_name: 'pgadmin'
-    image: elestio/pgadmin
-    restart: always
-    environment:
-      - PGADMIN_DEFAULT_EMAIL
-      - PGADMIN_DEFAULT_PASSWORD
-      - PGADMIN_LISTEN_PORT
-    ports:
-      - 5050:5050
-    depends_on:
-      - data_base
-    deploy:
-      resources:
-        limits:
-          cpus: '0.2'
-          memory: 256M
+  #pgadmin4:
+  #  container_name: 'pgadmin'
+  #  image: elestio/pgadmin
+  #  restart: always
+  #  environment:
+  #    - PGADMIN_DEFAULT_EMAIL
+  #    - PGADMIN_DEFAULT_PASSWORD
+  #    - PGADMIN_LISTEN_PORT
+  #  ports:
+  #    - 5050:5050
+  #  depends_on:
+  #    - data_base
+  #  deploy:
+  #    resources:
+  #      limits:
+  #        cpus: '0.2'
+  #        memory: 256M
 
 volumes:
   backup-app:

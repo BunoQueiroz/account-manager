@@ -6,7 +6,7 @@ services:
     depends_on: 
       - data_base
     container_name: 'application-1'
-    image: bunoqueiroz/account-manager:1.4.1
+    image: bunoqueiroz/account-manager:1.4.2
     restart: always
     volumes:
       - backup-app:/application/backups/
@@ -28,7 +28,7 @@ services:
     depends_on: 
       - data_base
     container_name: 'application-2'
-    image: bunoqueiroz/account-manager:1.4.1
+    image: bunoqueiroz/account-manager:1.4.2
     restart: always
     volumes:
       - backup-app:/application/backups/

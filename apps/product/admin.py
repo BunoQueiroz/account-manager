@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.http.response import HttpResponse
 from product.models import Product, Category
-from product.forms import ProductModelForm
+from product.forms import ProductModelForm, CategoryModelForm
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -25,6 +25,12 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = [id_category, 'name']
     list_editable = ['name']
     search_fields = ['name']
+    form = CategoryModelForm
+
+    def response_add(self, request, obj, post_url_continue: str | None = ...) -> HttpResponse:
+        if self.form.errors:
+            HttpResponse.status_code = 400
+        return super().response_add(request, obj, post_url_continue)
 
 
 admin.site.register(Category, CategoryAdmin)

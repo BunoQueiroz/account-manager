@@ -38,6 +38,11 @@ class NameProductValidTestCase(TestCase):
             'category': self.category_in_db.pk,
             'price': 2.0
         }
+        self.name_with_graphic_accents = {
+            'name': 'Linguiça',
+            'category': self.category_in_db.pk,
+            'price': 24.0
+        }
         
     def test_name_product_with_special_characters_return_status_code_400(self):
         response = self.client.post(self.url, self.name_with_special_character)
@@ -57,6 +62,10 @@ class NameProductValidTestCase(TestCase):
     
     def test_name_product_with_hypen_return_status_code_302(self):
         response = self.client.post(self.url, self.name_with_hyphen)
+        self.assertEqual(response.status_code, 302)
+    
+    def test_name_product_with_graphic_accents_return_status_code_302(self):
+        response = self.client.post(self.url, self.name_with_graphic_accents)
         self.assertEqual(response.status_code, 302)
 
 
@@ -87,3 +96,7 @@ class NameProductValidTestCase(TestCase):
         product = Product.objects.filter(name='nome Com - é válido')
         self.assertTrue(product.exists())
 
+    def test_name_product_with_graphic_accents_insert_in_database(self):
+        self.client.post(self.url, self.name_with_graphic_accents)
+        product = Product.objects.filter(name='Linguiça')
+        self.assertTrue(product.exists())

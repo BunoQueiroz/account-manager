@@ -21,5 +21,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Test a image account-manager
-      run: docker build . --file Dockerfile --tag account-manager:$(date +%s) && python manage.py test
+      run: python3 -m pip install -r requirements.txt && python manage.py test
       

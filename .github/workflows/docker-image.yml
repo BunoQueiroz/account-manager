@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ "master" ]
     
-env:
-  SECRET_KEY: ${{ secrets.GITHUB_TOKEN.SECRET_KEY }}
-
 jobs:
 
   build:
@@ -19,6 +16,8 @@ jobs:
       run: docker build . --file Dockerfile --tag account-manager:$(date +%s)
   
   tests:
+    env:
+      SECRET_KEY: ${{ secrets.GITHUB_TOKEN.SECRET_KEY }}
     needs: build
     runs-on: ubuntu-latest
     steps:

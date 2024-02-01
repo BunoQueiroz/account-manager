@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
     
 env:
-  secret_key: ${{ secrets.GITHUB_TOKEN.secret_key }}
+  SECRET_KEY: ${{ secrets.GITHUB_TOKEN.SECRET_KEY }}
 
 jobs:
 
@@ -22,7 +22,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
-      secret_key: ${{ secrets.GITHUB_TOKEN.secret_key }}
+      SECRET_KEY: ${{ secrets.GITHUB_TOKEN.SECRET_KEY }}
     steps:
     - uses: actions/checkout@v3
     - name: Test a image account-manager

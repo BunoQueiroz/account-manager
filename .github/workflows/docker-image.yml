@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
     
 env:
-  secret_key: ${{ secrets.SECRET_KEY }}
+  SECRET_KEY: ${{ secrets.GITHUB_TOKEN.SECRET_KEY.SECRET_KEY }}
 
 jobs:
 
@@ -20,7 +20,7 @@ jobs:
   
   tests:
     env:
-      secret_key: ${{ secrets.SECRET_KEY }}
+      SECRET_KEY: ${{ secrets.GITHUB_TOKEN.SECRET_KEY.SECRET_KEY }}
     needs: build
     runs-on: ubuntu-latest
     steps:

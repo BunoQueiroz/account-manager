@@ -17,7 +17,7 @@ jobs:
   
   tests:
     env:
-      SECRET_KEY: ${{ secrets.GITHUB_TOKEN.SECRET_KEY }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
     needs: build
     runs-on: ubuntu-latest
     steps:

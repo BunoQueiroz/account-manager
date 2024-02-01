@@ -21,6 +21,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       env:
-        secret_key: ${{ secrets.SECRET_KEY }}
+        secret_key: ${{ secrets.GITHUB_TOKEN.secret_key }}
     - name: Test a image account-manager
       run: python3 -m pip install -r requirements.txt && python manage.py test

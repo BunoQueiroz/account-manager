@@ -25,7 +25,10 @@ jobs:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
     steps:
     - uses: actions/checkout@v3
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
     - name: Test a image account-manager
       run: | 
         python3 -m pip install -r requirements.txt
         python manage.py test
+    

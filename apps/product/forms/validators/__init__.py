@@ -1,3 +1,4 @@
 from .names_product_validator import name_product_validator
 from .brands_product_validator import brand_product_validator
 from .descriptions_product_validator import description_product_validator
+from .names_category_validator import name_category_validator

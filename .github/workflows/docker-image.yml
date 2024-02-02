@@ -30,6 +30,6 @@ jobs:
   docker-infra:
     uses: ./.github/workflows/infra.yml
     with:
-      config-path: ./.github/infra.yml
+      config-path: .github/workflows/infra.yml
     secrets: inherit
     

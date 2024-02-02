@@ -20,9 +20,14 @@ jobs:
 
   infrastructure:
     runs-on: ubuntu-latest
-    steps:          
+    steps:
+    - name: Docker login
+      uses: docker/login-action@v3.0.0
+      with:
+        username: bunoqueiroz
+        password: ${{ secrets.DOCKER_PASSWORD }}
+      
     - name: Docker compose up
-
       run: |
         docker compose build
-        docker compose up . --file docker-compose.yml
+        docker compose up

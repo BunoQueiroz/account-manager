@@ -15,7 +15,8 @@ jobs:
           username: bunoqueiroz
           # Password or personal access token used to log against the Docker registry
           password: ${{ secrets.DOCKER_PASSWORD }}
-    
+          
+      - name: Docker compose up
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           DEBUG: ${{ secrets.DEBUG }}
@@ -24,3 +25,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+
+        run: |
+          docker compose build
+          docker compose up

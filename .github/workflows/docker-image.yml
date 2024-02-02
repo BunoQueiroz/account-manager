@@ -26,7 +26,3 @@ jobs:
       run: | 
         python3 -m pip install -r requirements.txt
         python manage.py test
-    
-  infra:
-    needs: tests
-    uses: ./.github/workflows/infra.yml

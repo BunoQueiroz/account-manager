@@ -29,6 +29,4 @@ jobs:
     
   infra:
     needs: tests
-    name: Testing a infra
     uses: ./.github/workflows/infra.yml
-    secrets: inherit

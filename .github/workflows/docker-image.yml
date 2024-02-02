@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ "master" ]
     
-env:
-  SECRET_KEY: ${{ secrets.SECRET_KEY }}
-
 jobs:
 
   build:
@@ -19,16 +16,18 @@ jobs:
       run: docker build . --file Dockerfile --tag account-manager:$(date +%s)
   
   tests:
-    needs: build
-    runs-on: ubuntu-latest
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
+    needs: build
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-      env:
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
     - name: Test a image account-manager
       run: | 
         python3 -m pip install -r requirements.txt
         python manage.py test
     
+  infra:
+    needs: tests
+    uses: ./.github/workflows/infra.yml
+    secrets: inherit

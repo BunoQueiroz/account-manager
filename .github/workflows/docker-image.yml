@@ -28,7 +28,7 @@ jobs:
         python manage.py test
   
   infrastructure:
-    uses: ./.github/workflows/infra
+    uses: ./.github/workflows/infra.yml
     with:
       config-path: .github/workflows/infra.yml
     secrets: inherit

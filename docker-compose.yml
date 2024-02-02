@@ -62,7 +62,7 @@ services:
 
   nginx:
     container_name: 'nginx'
-    build: .\nginx-config\
+    build: ./nginx-config/
     restart: always
     environment:
       - NGINX_HOST

@@ -29,4 +29,7 @@ jobs:
   
   infra:
     uses: ./.github/workflows/infra.yml
+    secrets: inherit
+    with:
+      config-path: .github/workflows/docker-image.yml
     

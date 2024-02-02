@@ -29,7 +29,4 @@ jobs:
   
   infrastructure:
     uses: ./.github/workflows/infra.yml
-    with:
-      config-path: .github/workflows/infra.yml
-      secrets: inherit
     

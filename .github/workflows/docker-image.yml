@@ -28,8 +28,8 @@ jobs:
         python manage.py test
   
   docker-infra:
-    uses: BunoQueiroz/account-manager/.github/workflows/infra.yml@main
+    uses: ./.github/workflows/infra.yml
     with:
-      config-path: .github/infra.yml
+      config-path: ./.github/infra.yml
     secrets: inherit
     

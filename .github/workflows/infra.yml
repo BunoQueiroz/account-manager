@@ -29,5 +29,5 @@ jobs:
       
     - name: Docker compose up
       run: |
-        docker compose build ./
+        docker compose build ./docker-compose.yml
         docker compose up ./

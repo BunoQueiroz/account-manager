@@ -28,5 +28,6 @@ jobs:
         python manage.py test
   
   infra:
+    needs: tests
     uses: ./.github/workflows/infra.yml
     secrets: inherit

@@ -1,13 +1,22 @@
 from requests import Session
 from faker import Faker
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()
+
+HOST_TEST = os.getenv('HOST_TEST')
+USERNAME_LOGIN = os.getenv('USERNAME_LOGIN')
+PASSWORD_LOGIN = os.getenv('PASSWORD_LOGIN')
 
 
 # Login
-url_login = 'http://localhost/login/?next=/'
+url_login = f'http://{HOST_TEST}/login/?next=/'
 session = Session()
 data_login = {
-    'username': 'root',
-    'password': 'bruno',
+    'username': f'{USERNAME_LOGIN}',
+    'password': f'{PASSWORD_LOGIN}',
     'csrfmiddlewaretoken': session.get(url_login).cookies['csrftoken'],
 }
 session.post(url_login, data=data_login)
@@ -15,7 +24,7 @@ session.post(url_login, data=data_login)
 
 # Post New client
 def post_new_client():
-    url_new_client = 'http://localhost/client/client/add/'
+    url_new_client = f'http://{HOST_TEST}/client/client/add/'
 
     faker = Faker()
 
@@ -31,7 +40,7 @@ def post_new_client():
 
 # Post New Product
 def post_new_product():
-    url_new_product = 'http://localhost/product/product/add/'
+    url_new_product = f'http://{HOST_TEST}/product/product/add/'
 
     faker = Faker()
 

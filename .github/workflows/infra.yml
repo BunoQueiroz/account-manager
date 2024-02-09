@@ -1,30 +1,29 @@
-name: Infra docker-compose
+name: Infra docker compose
 
 on:
   workflow_call:
 
+env:
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  DEBUG: ${{ secrets.DEBUG }}
+  HOST: ${{ secrets.HOST }}
+  PORT: ${{ secrets.PORT }}
+  POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+  POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+  POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+
 jobs:
 
-  infra:
+  infrastructure:
     runs-on: ubuntu-latest
     steps:
-    - name: Docker Login
-    uses: docker/login-action@v3.0.0
-    env:
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      DEBUG: ${{ secrets.DEBUG }}
-      HOST: ${{ secrets.HOST }}
-      PORT: ${{ secrets.PORT }}
-      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-
-    with:
-      # Username used to log against the Docker registry
-      username: bunoqueiroz
-      # Password or personal access token used to log against the Docker registry
-      password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Docker login
+      uses: docker/login-action@v3.0.0
+      with:
+        username: bunoqueiroz
+        password: ${{ secrets.DOCKER_PASSWORD }}
     
-    run: |
-      docker compose build
-      docker compose up
+    - uses: actions/checkout@v4
+    - name: Docker compose up
+      run: |
+        docker compose build

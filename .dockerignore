@@ -15,7 +15,6 @@ Dockerfile
 .dockerignore
 
 # Static Files Django and project
-
 static/
 style/
 
@@ -24,3 +23,6 @@ nginx-config/
 
 # Requests Web
 requests-web/
+
+# CI/CD
+.github/

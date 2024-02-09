@@ -25,9 +25,9 @@ jobs:
     - name: Test a image account-manager
       run: | 
         python3 -m pip install -r requirements.txt
-        python manage.py test
-  
-  infra:
+        python manage.py test --settings config.settings_dev
+    
+    infra:
     needs: tests
     uses: ./.github/workflows/infra.yml
     secrets: inherit

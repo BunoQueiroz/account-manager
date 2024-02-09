@@ -2,11 +2,11 @@ version: '3'
 
 services:
 
-  application1:
+  application1: &application1
     depends_on: 
       - data_base
-    container_name: 'application-1'
-    image: bunoqueiroz/account-manager:1.4.2
+    container_name: application-1
+    image: bunoqueiroz/account-manager:1.4.3
     restart: always
     volumes:
       - backup-app:/application/backups/
@@ -25,29 +25,11 @@ services:
           memory: 256M
 
   application2:
-    depends_on: 
-      - data_base
-    container_name: 'application-2'
-    image: bunoqueiroz/account-manager:1.4.2
-    restart: always
-    volumes:
-      - backup-app:/application/backups/
-    environment:
-      - POSTGRES_PASSWORD
-      - POSTGRES_USER
-      - POSTGRES_DB
-      - DEBUG
-      - SECRET_KEY
-      - HOST
-      - PORT
-    deploy:
-      resources:
-        limits:
-          cpus: '0.75'
-          memory: 256M
+    <<: *application1
+    container_name: application-2
 
   data_base:
-    container_name: 'data_base'
+    container_name: data_base
     image: postgres
     environment:
       - POSTGRES_PASSWORD
@@ -61,7 +43,7 @@ services:
           memory: 256M
 
   nginx:
-    container_name: 'nginx'
+    container_name: nginx
     build: .\nginx-config\
     restart: always
     environment:

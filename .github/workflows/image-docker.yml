@@ -11,9 +11,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the account-manager
-      run: docker build . --file Dockerfile --tag account-manager:$(date +%s)
+      - uses: actions/checkout@v4
+      - name: Build the account-manager
+        run: docker build . --file Dockerfile --tag account-manager:$(date +%s)
   
   tests:
     env:
@@ -21,13 +21,13 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Test a image account-manager
       run: | 
         python3 -m pip install -r requirements.txt
         python manage.py test --settings config.settings_dev
     
-  infra:
-    needs: tests
-    uses: ./.github/workflows/infra.yml
-    secrets: inherit
+    infra:
+      needs: tests
+      uses: ./.github/workflows/infra.yml
+      secrets: inherit

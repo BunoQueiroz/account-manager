@@ -19,7 +19,7 @@ jobs:
     needs: build-account-manager
     runs-on: ubuntu-latest
     steps:
-      - uses: action/checkout@v4
+      - uses: actions/checkout@v4
       - name: Build the Nginx-account-manager
         run: |
           python3 -m pip install -r requirements.txt

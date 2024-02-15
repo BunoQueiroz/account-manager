@@ -35,3 +35,15 @@ jobs:
           nginx
           containers_update
   
+  tests-prod:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Tests Production
+        uses: cloudposse/github-action-docker-compose-test-run@main
+        with:
+          file: ./docker-compose.yml
+          service: application1
+          command: python3 manage.py test

@@ -6,7 +6,7 @@ services:
     depends_on: 
       - data_base
     container_name: application-1
-    image: bunoqueiroz/account-manager:1.4.3
+    image: bunoqueiroz/account-manager
     restart: always
     volumes:
       - backup-app:/application/backups/
@@ -44,7 +44,7 @@ services:
 
   nginx:
     container_name: nginx
-    build: ./nginx-config/
+    image: bunoqueiroz/nginx-account-manager
     restart: always
     environment:
       - NGINX_HOST
@@ -60,6 +60,21 @@ services:
           cpus: '0.3'
           memory: 256M
 
+  containers-update:
+    depends_on:
+      - nginx
+    container_name: observer
+    restart: always
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: 256M
+  
   #pgadmin4:
   #  container_name: 'pgadmin'
   #  image: elestio/pgadmin

@@ -47,4 +47,4 @@ jobs:
         with:
           file: ./docker-compose.yml
           service: application1
-          command: python manage.py test
+          command: scripts/runtests.sh

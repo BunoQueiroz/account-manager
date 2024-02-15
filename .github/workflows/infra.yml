@@ -36,6 +36,7 @@ jobs:
           containers_update
   
   tests-prod:
+    needs: infra
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,4 +47,4 @@ jobs:
         with:
           file: ./docker-compose.yml
           service: application1
-          command: python3 manage.py test
+          command: python manage.py test

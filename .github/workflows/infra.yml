@@ -21,22 +21,24 @@ jobs:
   
   tests-prod:
     needs: infra
-    env:
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      DEBUG: ${{ secrets.DEBUG }}
-      HOST: ${{ secrets.HOST }}
-      PORT: ${{ secrets.PORT }}
-      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-      MAX_TIME_SESSION: ${{ secrets.MAX_TIME_SESSION }}
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Tests Production
         uses: cloudposse/github-action-docker-compose-test-run@main
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          DEBUG: ${{ secrets.DEBUG }}
+          HOST: ${{ secrets.HOST }}
+          PORT: ${{ secrets.PORT }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          MAX_TIME_SESSION: ${{ secrets.MAX_TIME_SESSION }}
+        
         with:
           file: ./docker-compose.yml
           service: application1

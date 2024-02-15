@@ -14,7 +14,7 @@ env:
 
 jobs:
 
-  infrastructure:
+  infra:
     runs-on: ubuntu-latest
     steps:
     - name: Docker login
@@ -23,7 +23,16 @@ jobs:
         username: bunoqueiroz
         password: ${{ secrets.DOCKER_PASSWORD }}
     
-    - uses: actions/checkout@v4
-    - name: Docker compose up
-      run: |
-        docker compose build
+    - name: Up services
+    - uses: actions/checkout@v3
+    - uses: isbang/compose-action@v1.5.1
+      with:
+        compose-file: "./docker/docker-compose.yml"
+        down-flags: "--volumes"
+        services: |
+          application1
+          application2
+          data_base
+          nginx
+          containers_update
+  

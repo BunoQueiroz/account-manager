@@ -25,8 +25,8 @@ jobs:
     
     - name: Up services
       uses: KengoTODA/actions-setup-docker-compose@v1
-      with:
-        version: '3'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
   tests-prod:
     needs: infra

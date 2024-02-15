@@ -1,8 +1,8 @@
 from dotenv import load_dotenv
-
 from pathlib import Path
 import os
 import sys
+
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -15,15 +15,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', False)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS', '*')]
 
-'''
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-'''
+
 
 # Application definition
 
@@ -125,15 +125,18 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'nginx-config/static/')
 STATIC_URL = 'static/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 # Project Root
 
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, '../apps/'))
+
 
 # Storages
 
@@ -145,3 +148,15 @@ STORAGES = {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
+
+
+# Data for Request
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1572864
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 500
+DATA_UPLOAD_MAX_NUMBER_FILES = 50
+
+
+# Sessions
+
+SESSION_COOKIE_AGE = os.getenv('MAX_TIME_SESSION')

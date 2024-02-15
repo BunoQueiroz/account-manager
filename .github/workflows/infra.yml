@@ -24,8 +24,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     
     - name: Up services
-    - uses: actions/checkout@v3
-    - uses: isbang/compose-action@v1.5.1
+      uses: isbang/compose-action@v1.5.1
       with:
         compose-file: "./docker/docker-compose.yml"
         down-flags: "--volumes"

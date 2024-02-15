@@ -7,18 +7,9 @@ on:
     branches: [ "master" ]
     
 jobs:
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Build the account-manager
-        run: docker build . --file Dockerfile --tag account-manager:$(date +%s)
-  
-  tests:
+  tests-dev:
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
-    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -26,8 +17,29 @@ jobs:
       run: | 
         python3 -m pip install -r requirements.txt
         python manage.py test --settings config.settings_dev
+
+  build-account-manager:
+    needs: tests-dev
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the account-manager
+        run: docker build . --file Dockerfile --tag account-manager:$(date +%s)
+  
+  build-nginx-account-manager:
+    needs: tests-dev
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the Nginx-account-manager
+        run: |
+          python3 -m pip install -r requirements.txt
+          python3 manage.py collectstatic --noinput
+          docker build ./nginx-config/ --file ./nginx-config/Dockerfile --tag nginx-account-manager:$(date +%s)
     
   infra:
-    needs: tests
+    needs:
+      - build-nginx-account-manager
+      - build-account-manager
     uses: ./.github/workflows/infra.yml
     secrets: inherit

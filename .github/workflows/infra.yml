@@ -24,9 +24,9 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     
     - name: Up services
-      uses: isbang/compose-action@v1.5.1
+      uses: KengoTODA/actions-setup-docker-compose@v1
       with:
-        down-flags: "--volumes"
+        version: '3'
   
   tests-prod:
     needs: infra

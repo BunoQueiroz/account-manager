@@ -9,6 +9,7 @@ nginx-config/static/admin/img/
 nginx-config/static/admin/js/
 nginx-config/static/admin/css/*
 !nginx-config/static/admin/css/base.css
+static/
 
 # C extensions
 *.so

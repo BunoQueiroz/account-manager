@@ -1,0 +1,22 @@
+name: Build and push new versions of the system
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  new_image:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: bunoqueiroz
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: building and pushing the new version the account-manager
+      run: |
+        ./scripts/build_and_push_account-manager.sh
+    

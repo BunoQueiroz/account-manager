@@ -16,6 +16,7 @@ jobs:
         username: bunoqueiroz
         password: ${{ secrets.DOCKER_PASSWORD }}
         
+    - uses: actions/checkout@v4
     - name: building and pushing the new version the account-manager
       run: |
         python3 scripts/build_and_push_account-manager.py

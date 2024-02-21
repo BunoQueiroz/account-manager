@@ -18,5 +18,5 @@ jobs:
         
     - name: building and pushing the new version the account-manager
       run: |
-        ./scripts/build_and_push_account-manager.sh
+        python3 ./scripts/build_and_push_account-manager.py
     

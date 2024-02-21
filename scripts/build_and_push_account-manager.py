@@ -1,10 +1,11 @@
 import os
 
+version = os.getenv('github.run_number')
 
 os.system(
-    'docker pull bunoqueiroz/account-manager \
-    && docker tag bunoqueiroz/account-manager bunoqueiroz/account-manager:${{ github.run_number }} \
-    && docker push bunoqueiroz/account-manager:${{ github.run_number }} \
+    f'docker pull bunoqueiroz/account-manager \
+    && docker tag bunoqueiroz/account-manager bunoqueiroz/account-manager:1.5.{version} \
+    && docker push bunoqueiroz/account-manager:1.5.{version} \
     && docker build -t account-manager . \
     && docker tag account-manager bunoqueiroz/account-manager \
     && docker push bunoqueiroz/account-manager'

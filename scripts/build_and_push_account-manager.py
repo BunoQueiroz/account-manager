@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-version = os.getenv('github.run_number')
+version = os.getenv('VERSION')
 
 os.system(
     f'docker pull bunoqueiroz/account-manager \

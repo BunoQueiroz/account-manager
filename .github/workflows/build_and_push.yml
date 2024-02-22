@@ -1,7 +1,7 @@
 name: Build and push new versions of the system
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 

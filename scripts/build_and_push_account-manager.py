@@ -1,4 +1,8 @@
 import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 version = os.getenv('github.run_number')
 

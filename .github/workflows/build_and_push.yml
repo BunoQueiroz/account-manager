@@ -1,13 +1,12 @@
 name: Build and push new versions of the system
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
+    branches:
+      - master
 
 jobs:
   new_image:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
     - name: Login to Docker Hub

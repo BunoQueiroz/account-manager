@@ -12,6 +12,7 @@ class ClientAdmin(admin.ModelAdmin):
     list_display = [id_client, 'first_name', 'email', 'birthday']
     search_fields = ['first_name']
     actions = [reopen_account]
+    list_per_page = 25
     form = ClientForm
 
     def response_add(self, request, obj, post_url_continue: str | None = ...):
@@ -29,18 +30,21 @@ class AccountAdmin(admin.ModelAdmin):
     list_editable = ['opened']
     search_fields = ['client__first_name']
     list_filter = ['opened']
+    list_per_page = 25
 
 
 class PurchaseAdmin(admin.ModelAdmin):
     list_display = ['account', 'item', 'amount', 'total', 'moment']
     list_filter = ['account']
     actions = [update]
+    list_per_page = 30
 
 
 class PaymentAdmin(admin.ModelAdmin):
     list_display = ['account', 'value', 'payer', 'moment', 'received']
     list_filter = ['account']
     search_fields = ['account', 'payer']
+    list_per_page = 30
     form = PaymentForm
 
     def response_add(self, request, obj, post_url_continue: str | None = ...):

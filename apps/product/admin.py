@@ -9,6 +9,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_editable = ['brand',]
     search_fields = ['name', 'brand']
     list_filter = ['category', 'brand']
+    list_per_page = 30
     form = ProductModelForm
     
     def response_add(self, request, obj, post_url_continue: str | None = ...) -> HttpResponse:
@@ -25,6 +26,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = [id_category, 'name']
     list_editable = ['name']
     search_fields = ['name']
+    list_per_page = 30
     form = CategoryModelForm
 
     def response_add(self, request, obj, post_url_continue: str | None = ...) -> HttpResponse:

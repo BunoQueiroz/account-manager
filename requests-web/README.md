@@ -15,7 +15,7 @@ git clone https://github.com/BunoQueiroz/account-manager.git
 -- RUNNING:
 * With all instaled, do:
 ```
-python3 manage.py runserver
+python3 manage.py runserver --settings config.settings_dev
 ```
 
 ## register super user
@@ -23,6 +23,6 @@ python3 manage.py runserver
 ```
 python3 manage.py createsuperuser
 ```
-AND FILL IN THE USERNAME AND PASSOWORD !
+AND FILL IN THE ENVIRONMENT VARIABLES ACCORDING TO THE .ENV.EXAMPLE !
 
 ## FOR MORE INFORMATIONS, READ THE [OFFICIAL DOCUMENTATION](https://github.com/BunoQueiroz/account-manager/blob/master/README.md)

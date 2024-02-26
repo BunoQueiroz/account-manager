@@ -9,6 +9,7 @@ load_dotenv()
 HOST_TEST = os.getenv('HOST_TEST')
 USERNAME_LOGIN = os.getenv('USERNAME_LOGIN')
 PASSWORD_LOGIN = os.getenv('PASSWORD_LOGIN')
+CATEGORY_ID = os.getenv('CATEGORY_ID')
 
 
 # Login
@@ -45,9 +46,9 @@ def post_new_product():
     faker = Faker()
 
     new_product = {
-        'name': faker.bothify(text='Product: ????????'),
+        'name': faker.bothify(text='Product ????????'),
         'price': faker.random_int(min=1, max=150),
-        'category': 3,
+        'category': {CATEGORY_ID},
         'description': faker.text(),
         'brand': faker.lexify(text='??????????', letters='ABCDEFG'),
         'csrfmiddlewaretoken': session.get(url_new_product).cookies['csrftoken'],

@@ -1,11 +1,18 @@
 name: Build and push new versions of the system
 
 on:
-  workflow_call:
+  push:
+    branches:
+      - master
 
 jobs:
 
+  test_all:
+    uses: ./.github/workflows/image-docker.yml
+    secrets: inherit
+
   new_image:
+    needs: test_all
     runs-on: ubuntu-latest
     steps:
     - name: Login to Docker Hub

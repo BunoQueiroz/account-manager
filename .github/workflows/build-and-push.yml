@@ -1,11 +1,10 @@
 name: Build and push new versions of the system
 
 on:
-  push:
-    branches:
-      - master
+  workflow_call:
 
 jobs:
+
   new_image:
     runs-on: ubuntu-latest
     steps:

@@ -1,10 +1,9 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ "master" ]
   pull_request:
     branches: [ "*" ]
+  workflow_call:
     
 jobs:
   tests-dev:
@@ -42,10 +41,4 @@ jobs:
       - build-nginx-account-manager
       - build-account-manager
     uses: ./.github/workflows/infra.yml
-    secrets: inherit
-
-  build-and-push:
-    needs: infra
-    if: github.event.pull_request.merged == true
-    uses: ./.github/workflows/build-and-push.yml
     secrets: inherit

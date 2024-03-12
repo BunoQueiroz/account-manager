@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.http.response import HttpResponse
 from client.admin.utils import reopen_account, update
-from client.forms import ClientForm, PaymentForm
+from client.forms import ClientForm, PaymentForm, UserForm
 
 
 class ClientAdmin(admin.ModelAdmin):
@@ -50,10 +50,11 @@ class PaymentAdmin(admin.ModelAdmin):
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['username','first_name', 'is_superuser']
+    list_display = ['username', 'first_name', 'is_superuser', 'is_staff']
     list_filter = ['is_superuser']
     search_fields = ['first_name', 'username']
     ordering = ['first_name']
+    form = UserForm
 
 
 class GroupAdmin(admin.ModelAdmin):
